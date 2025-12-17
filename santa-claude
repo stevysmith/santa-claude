@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Santa Claude wrapper - shows festive welcome then launches Claude Code
+# Usage: santa-claude [--no-welcome] [claude args...]
+
+# ANSI color codes
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+WHITE='\033[1;37m'
+YELLOW='\033[1;33m'
+CYAN='\033[0;36m'
+RESET='\033[0m'
+BOLD='\033[1m'
+
+# Check for --no-welcome flag
+SHOW_WELCOME=true
+CLAUDE_ARGS=()
+
+for arg in "$@"; do
+    if [[ "$arg" == "--no-welcome" ]]; then
+        SHOW_WELCOME=false
+    else
+        CLAUDE_ARGS+=("$arg")
+    fi
+done
+
+# Show festive welcome unless --no-welcome is passed
+if [[ "$SHOW_WELCOME" == true ]]; then
+    clear
+    echo -e "${RED}"
+    cat << 'EOF'
+  ╔══════════════════════════════════════════════════════════════╗
+  ║                                                              ║
+  ║      🎅  H O - H O - H O !   S A N T A   C L A U D E  🎅     ║
+  ║                                                              ║
+  ║            *    *         ___         *    *                 ║
+  ║         *     *    *    /     \    *     *    *              ║
+  ║                        |  ◠ ◠  |                             ║
+  ║           ▗ ▗   ▖ ▖     \  ▽  /     ▗ ▗   ▖ ▖                ║
+  ║                          ‾‾‾‾‾                               ║
+  ║             ▘▘ ▝▝                     ▘▘ ▝▝                   ║
+  ║                                                              ║
+  ║        🎄 Merry Coding & Happy Holidays! 🎄                  ║
+  ║                                                              ║
+  ╚══════════════════════════════════════════════════════════════╝
+EOF
+    echo -e "${RESET}"
+    echo -e "${CYAN}  ❄     ❅        ❆    ❄      ❅    ❆      ❄${RESET}"
+    echo ""
+    sleep 1
+fi
+
+# Launch Claude with remaining arguments
+exec claude "${CLAUDE_ARGS[@]}"

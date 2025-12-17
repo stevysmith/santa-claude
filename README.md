@@ -119,3 +119,5 @@ MIT License - Spread the holiday cheer!
 ---
 
 🎅🎄❄️ *Ho ho ho! Happy Coding and Happy Holidays!* ❄️🎄🎅
+
+In memory of the OG https://github.com/airbyte/touchbar_santa/
